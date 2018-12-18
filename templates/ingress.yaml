@@ -20,6 +20,6 @@ spec:
         backend:
           serviceName: {{ template "fullname" . }}-http
           servicePort: {{ .Values.service.http.port }}
-  tls:
-{{ toYaml .Values.ingress.tls | indent 4 }}
+  #tls:
+#{{ toYaml .Values.ingress.tls | indent 4 }}
 {{- end -}}
