@@ -2,24 +2,20 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "fullname" . }}ingress
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app: {{ template "fullname" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+  name: mrt-ingress-test
   annotations:
-{{ toYaml .Values.ingress.ingress_annotations | indent 4 }}
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: {{ .Values.service.http.externalHost }}
+  - host: helm.mrtinternal
     http:
       paths:
-      - path: /gitea
+      - path: /foo
         backend:
-          serviceName: {{ template "fullname" . }}-http
-          servicePort: {{ .Values.service.http.port }}
-  #tls:
-#{{ toYaml .Values.ingress.tls | indent 4 }}
+          serviceName: http
+          servicePort: 3000
+      - path: /bar
+        backend:
+          serviceName: ssh
+          servicePort: 22
 {{- end -}}
