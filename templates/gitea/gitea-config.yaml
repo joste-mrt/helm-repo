@@ -130,7 +130,8 @@ data:
     {{- if .Values.service.http.externalHost }}
     DOMAIN = {{ .Values.service.http.externalHost }}
     {{- else }}
-    DOMAIN = {{ template "fullname" . }}-http.{{ .Release.Namespace }}.svc.cluster.local
+    #DOMAIN = {{ template "fullname" . }}-http.{{ .Release.Namespace }}.svc.cluster.local
+    DOMAIN = CHANGE-ME
     {{- end -}}
     {{ if .Values.ingress.tls }}
     {{- $proto := set . "proto" "https" }}
@@ -170,7 +171,8 @@ data:
     {{- if .Values.service.ssh.externalHost  }}
     SSH_DOMAIN = {{ .Values.service.ssh.externalHost  }}
     {{- else }}
-    SSH_DOMAIN = {{ template "fullname" . }}-ssh.{{ .Release.Namespace }}.svc.cluster.local
+    #SSH_DOMAIN = {{ template "fullname" . }}-ssh.{{ .Release.Namespace }}.svc.cluster.local
+    SSH_DOMAIN = CHANGE-ME
     {{- end }}
     ; THe network interface the builtin SSH server should listen on
     SSH_LISTEN_HOST =
