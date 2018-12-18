@@ -12,10 +12,10 @@ spec:
       paths:
       - path: /foo
         backend:
-          serviceName: http
+          serviceName: gitea-gitea-http
           servicePort: 3000
       - path: /bar
         backend:
-          serviceName: ssh
+          serviceName: gitea-gitea-ssh
           servicePort: 22
 {{- end -}}
