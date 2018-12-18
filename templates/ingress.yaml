@@ -18,8 +18,4 @@ spec:
         backend:
           serviceName: gitea-gitea-http
           servicePort: 3000
-          headerRules:
-          - X-Forwarded-Host %[base]
-          rewriteRules:
-          - "^([^\\ :]*)\\ /(.*)$ \\1\\ /testings/\\2"
 {{- end -}}
