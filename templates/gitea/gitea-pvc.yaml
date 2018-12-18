@@ -5,7 +5,7 @@ metadata:
   name: {{ template "fullname" . }}
   labels:
     app: {{ template "postgresql.name" . }}
-    chart: MRTGitea
+    chart: gitea
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 {{- if .Values.persistence.annotations }}
