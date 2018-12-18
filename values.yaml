@@ -22,11 +22,15 @@ memcached:
 ingress:
   enabled: true
   ## annotations used by the ingress - ex for k8s nginx ingress controller:
-  #ingress_annotations:
-  #  kubernetes.io/ingress.class: nginx
-  #  nginx.ingress.kubernetes.io/proxy-body-size: "0"
-  #  nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
-  #  nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+  ingress_annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+   
+  ingress_path: "/xxx"
+    
 
   #tls support for the ingress
   #tls:

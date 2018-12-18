@@ -2,23 +2,24 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: mrt-ingress-test
+  name: {{ template "fullname" . }}ingress
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
   annotations:
-    kubernetes.io/ingress.class: nginx
-    #nginx.ingress.kubernetes.io/rewrite-target: /
-    #nginx.ingress.kubernetes.io/app-root: /foo
-    #nginx.ingress.kubernetes.io/add-base-url: "true" 
-    nginx.ingress.kubernetes.io/proxy-body-size: "0"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
-
+{{ toYaml .Values.ingress.ingress_annotations | indent 4 }}
 spec:
   rules:
-  - host: helm.mrtinternal
+  - host: {{ .Values.service.http.externalHost }}
     http:
       paths:
-      - path: /foo
+      - path: {{ .Values.ingress.ingress_path }}
         backend:
-          serviceName: gitea-gitea-http
-          servicePort: 3000
+          serviceName: {{ template "fullname" . }}-http
+          servicePort: {{ .Values.service.http.port }}
+#  tls:
+#{{ toYaml .Values.ingress.tls | indent 4 }}
 {{- end -}}
