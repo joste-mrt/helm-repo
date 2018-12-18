@@ -4,15 +4,16 @@ kind: Ingress
 metadata:
   name: mrt-ingress-test
   annotations:
-    #nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/app-root: /foo 
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/app-root: /foo
+    nginx.ingress.kubernetes.io/add-base-url: "true" 
 
 spec:
   rules:
   - host: helm.mrtinternal
     http:
       paths:
-      - path: /
+      - path: /foo
         backend:
           serviceName: gitea-gitea-http
           servicePort: 3000
