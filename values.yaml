@@ -39,7 +39,7 @@ service:
     #nodePort: 30280
     # sometimes if is necesary to access through an external port i.e. http(s)://<dns-name>:<external-port>
     externalPort: 8280
-    externalHost: git.example.com
+    externalHost: 10.11.12.114
   ssh:
     serviceType: ClusterIP
     port: 22
